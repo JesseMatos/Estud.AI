@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Estud.AI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+</head>
+<body>
+    
+    <div class="container">
+
+    <h1>Estud.AI</h1>
+
+    <p class="subtitle">
+        Envie um PDF e gere resumos inteligentes com IA.
+    </p>
+
+    <div class="upload-area" id="uploadArea">
+        <h2>Clique para enviar seu PDF!</h2>
+        <p>Apostilas, artigos, livros e materiais de estudo.</p>
+    </div>
+
+    <input type="file" id="pdfInput" accept=".pdf">
+
+    <div class="file-info">
+
+        <p id="fileName"></p>
+
+        <button id="removeFileBtn">
+            ×
+        </button>
+
+    </div>
+
+    <button id="generateBtn">
+        Gerar Resumo
+    </button>
+
+    <div id="loading">
+        A IA está analisando seu PDF...
+    </div>
+
+    <div id="result">
+        <h2>Resumo Gerado</h2>
+
+        <p id="summaryText"></p>
+    </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
