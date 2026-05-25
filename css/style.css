@@ -8,99 +8,69 @@
 
 body{
     font-family: 'Inter', sans-serif;
-
     background: radial-gradient(circle at top, #172554 0%, #020617 70%);
-    
     min-height: 100vh;
-    
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding: 20px;
-
     color: white;
 }
 
 .container{
     width: 100%;
-
     max-width: 700px;
-
     background: rgba(30, 41, 59, 0.75);
-
     backdrop-filter: blur(10px);
-
     border: 1px solid rgba(255, 255, 255, 0.08);
-
     border-radius: 28px;
-
     padding: 50px;
-
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
-
     text-align: center;
+    overflow: hidden;
 }
 
 h1{
     font-size: 64px;
     font-weight: 700;
-
     background: linear-gradient(90deg, #38bdf8, #60a5fa);
-
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
     margin-bottom: 16px;
 }
 
 .subtitle{
     color: #cbd5e1;
-
     font-size: 20px;
-
     margin-bottom: 40px;
-
     line-height: 1.6;
 }
 
 .upload-area{
     border: 2px dashed #38bdf8;
-
     border-radius: 24px;
-
     padding: 50px 20px;
-
     cursor: pointer;
-
     transition: 0.3s ease;
-
     background: rgba(255, 255, 255, 0.03);
-
     margin-bottom: 25px;
-
     width: 100%;
 }
 
 .upload-area:hover{
     background: rgba(56, 189, 248, 0.08);
-
     transform: translateY(-2px);
-
     border-color: #7dd3fc;
 }
 
 .upload-area h2{
     font-size: 28px;
-
     margin-bottom: 14px;
-
     line-height: 1.3;
 }
 
 .upload-area p{
     color: #cbd5e1;
-
     font-size: 18px;
 }
 
@@ -110,150 +80,169 @@ input[type="file"]{
 
 #fileName{
     margin-bottom: 25px;
-
     color: #93c5fd;
-
     font-size: 15px;
 }
 
 button{
     width: 100%;
-
     padding: 18px;
-
     border: none;
-
     border-radius: 18px;
-
     background: linear-gradient(90deg, #38bdf8, #3b82f6);
-
     color: white;
-
     font-size: 18px;
-
     font-weight: 600;
-
     cursor: pointer;
-
     transition: 0.3s ease;
-
-    box-shadow: 0 10px 20 px rgba(59, 130, 246, 0.25);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25);
 }
 
 button:hover{
     transform: translateY(-2px);
-
     box-shadow: 0 15px 30px rgba(59, 130, 246, 0.35);
 }
 
 #loading{
     margin-top: 25px;
-
     color: #93c5fd;
-
     font-size: 15px;
-
     display: none;
 }
 
 #result{
     margin-top: 30px;
-
     background: rgba(255, 255, 255, 0.04);
-
     border: 1px solid rgba(255, 255, 255, 0.08);
-
     border-radius: 20px;
-
-    padding: 30px;
-
+    padding: 40px;
     text-align: left;
-
     display: none;
 }
 
 #result h2{
     margin-bottom: 20px;
-
     color: #38bdf8;
 }
 
 #summaryText{
-    line-height: 2;
-
-    color: #e2e8f0;
-
-    white-space: pre-wrap;
-
-    font-size: 16px;
+    line-height: 1.9;
+    color: #d9e7ff;
+    font-size: 17px;
 }
 
 .file-info{
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 14px;
-
     margin-top: 20px;
 
 }
 
 #fileName{
     color: #8ec5ff;
-
     font-size: 18px;
-
     margin: 0;
-
     padding: 0;
-
     line-height: 42px;
 }
 
 #removeFileBtn{
     display: none;
-
     background: #ff4d4d;
-
     border: none;
-
     color: white;
-
     width: 28px;
-
     height: 28px;
-
     border-radius: 50%;
-
     cursor: pointer;
-
     font-size: 20px;
-
     font-weight: bold;  
-
     align-items: center;
-
     justify-content: center;
-
     line-height: 1;
-
     padding: 0;
-
     margin: 0;
-
     transition: 0.3s;
-
     opacity: 0.85;
 
 }
 
 #removeFileBtn:hover{
     background: #ff2f2f;
-
     transform: scale(1.08);
-
     opacity: 1;
+}
+
+#summaryText h1,
+#summaryText h2,
+#summaryText h3{
+    color: #4db8ff;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 18px;
+    line-height: 1.4;
+}
+
+#summaryText strong{
+    color: white;
+    font-weight: 700;
+}
+
+#summaryText p{
+    margin-bottom: 16px;
+}
+
+#summaryText ul{
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+#summaryText li{
+    margin-bottom: 14px;
+    line-height: 1.8;
+}
+
+#summaryText hr{
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 30px 0;
+}
+
+@media(max-width:768px){
+    .container{
+        padding: 30px 20px;
+    }
+
+    h1{
+        font-size: 48px;
+    }
+
+    .subtitle{
+        padding: 40px 15px;
+    }
+
+    .upload-area h2{
+        font-size: 22px;
+    }
+
+    .upload-area p{
+        font-size: 16px;
+    }
+
+    button{
+        font-size: 17px;
+        padding: 16px;
+    }
+
+    #summaryText{
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    #fileName{
+        font-size: 15px;
+        text-align: center;
+    }
 }

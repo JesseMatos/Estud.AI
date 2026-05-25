@@ -83,7 +83,7 @@ generateBtn.addEventListener("click", async () => {
 
       result.style.display = "block";
 
-      summaryText.textContent = data.resumo;
+      summaryText.innerHTML = marked.parse(data.resumo);
 
     }catch(error){
 
