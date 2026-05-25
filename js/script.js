@@ -63,7 +63,7 @@ generateBtn.addEventListener("click", async () => {
 
     try{
 
-      const response = await fetch("http://localhost:3000/resumir", {
+      const response = await fetch("https://estud-ai-backend.onrender.com/resumir", {
 
         method: "POST",
 
