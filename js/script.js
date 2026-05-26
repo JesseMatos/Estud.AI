@@ -138,3 +138,25 @@ removeFileBtn.addEventListener("click", () => {
   removeFileBtn.style.display = "none";
 
 });
+
+uploadArea.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  uploadArea.classList.add("dragover");
+});
+
+uploadArea.addEventListener("dragleave", () => {
+  uploadArea.classList.remove("dragover");
+})
+
+uploadArea.addEventListener("drop", (event) => {
+  event.preventDefault();
+  uploadArea.classList.remove("dragover");
+  const file = event.dataTransfer.files[0];
+  if (file && file.type === "application/pdf"){
+    pdfInput.files = event.dataTransfer.files;
+    fileName.textContent = `Arquivo selecionado: ${file.name}`;
+    removeFileBtn.style.display = "flex";
+  }else{
+    alert("Por favor, envie um arquivo PDF.");
+  }
+});

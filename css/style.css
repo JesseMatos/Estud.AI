@@ -291,3 +291,10 @@ button:hover{
         opacity: 0.5;
     }
 }
+
+.upload-area.dragover{
+    background: rgba(56, 189, 248, 0.15);
+    border-color: #7dd3fc;
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+}
