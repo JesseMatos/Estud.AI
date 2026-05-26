@@ -2,14 +2,11 @@ const pdfInput = document.getElementById("pdfInput");
 const fileName = document.getElementById("fileName");
 const uploadArea = document.getElementById("uploadArea");
 const removeFileBtn = document.getElementById("removeFileBtn");
-
 const generateBtn = document.getElementById("generateBtn");
-
 const loading = document.getElementById("loading");
-
 const result = document.getElementById("result");
-
 const summaryText = document.getElementById("summaryText");
+const loadingText = document.getElementById("loadingText");
 
 uploadArea.addEventListener("click", () => {
   pdfInput.click();
@@ -27,6 +24,18 @@ pdfInput.addEventListener("change", () => {
 
 });
 
+const loadingMessages = [
+  "🧠 Analisando conteúdo do PDF...",
+
+  "📚 Identificando tópicos importantes...",
+
+  "✍️ Gerando resumo inteligente...",
+
+  "✨ Organizando informações...",
+
+  "🚀 Finalizando resultado..."
+]
+
 generateBtn.addEventListener("click", async () => {
 
   const file = pdfInput.files[0];
@@ -36,7 +45,20 @@ generateBtn.addEventListener("click", async () => {
     return;
   }
 
-  loading.style.display = "block";
+  loading.style.display = "flex";
+
+  let messageIndex = 0;
+
+  loadingText.textContent = loadingMessages[0];
+
+  const loadingInterval = setInterval(() => {
+
+    if(messageIndex < loadingMessages.length - 1){
+      messageIndex++;
+      loadingText.textContent = loadingMessages[messageIndex];
+    }
+
+  }, 3500);
 
   result.style.display = "none";
 
@@ -79,6 +101,8 @@ generateBtn.addEventListener("click", async () => {
 
       const data = await response.json();
 
+      clearInterval(loadingInterval);
+
       loading.style.display = "none";
 
       result.style.display = "block";
@@ -88,6 +112,8 @@ generateBtn.addEventListener("click", async () => {
     }catch(error){
 
       console.log(error);
+
+      clearInterval(loadingInterval);
 
       loading.style.display = "none";
 
