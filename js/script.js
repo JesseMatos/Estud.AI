@@ -7,6 +7,7 @@ const loading = document.getElementById("loading");
 const result = document.getElementById("result");
 const summaryText = document.getElementById("summaryText");
 const loadingText = document.getElementById("loadingText");
+const downloadBtn = document.getElementById("downloadBtn");
 
 uploadArea.addEventListener("click", () => {
   pdfInput.click();
@@ -159,4 +160,57 @@ uploadArea.addEventListener("drop", (event) => {
   }else{
     alert("Por favor, envie um arquivo PDF.");
   }
+});
+
+downloadBtn.addEventListener("click", () => {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const resumo = summaryText.innerText;
+  const dataAtual = new Date().toLocaleDateString("pt-BR");
+  const larguraPagina = doc.internal.pageSize.getWidth();
+
+  //TITULO
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(24);
+  doc.setTextColor(30, 41, 59);
+  doc.text("ESTUD.AI", larguraPagina / 2, 25, { align: "center" });
+
+  //SUBTITULO
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "normal");
+  doc.setTextColor(100);
+  doc.text("Resumo Inteligente gerado por IA", larguraPagina / 2, 35, { align: "center" });
+
+  //LINHA DECORATIVA
+  doc.setDrawColor(56, 189, 248);
+  doc.setLineWidth(1);
+  doc.line(20, 45, 190, 45);
+
+  //DATA
+  doc.setFontSize(10);
+  doc.setTextColor(120);
+  doc.text(`Gerado em: ${dataAtual}`, 20, 55);
+
+  //TEXTO
+  doc.setFont("times", "normal");
+  doc.setFontSize(12);
+  doc.setTextColor(40);
+  const linhas = doc.splitTextToSize(resumo, 170);
+  let posicaoY = 75;
+  linhas.forEach((linha) => {
+    if(posicaoY > 270){
+      doc.addPage();
+      posicaoY = 30;
+    }
+    doc.text(linha, 20, posicaoY);
+    posicaoY += 10;
+  });
+
+  //RODAPE
+  doc.setFontSize(9);
+  doc.setTextColor(150);
+  doc.text("Gerado automaticamente por Estud.AI", larguraPagina / 2, 285, { aligh: "center" });
+
+  //DOWNLOAD
+  doc.save("resumo-estud-ai.pdf");
 });

@@ -298,3 +298,7 @@ button:hover{
     transform: scale(1.02);
     box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
 }
+
+#downloadBtn{
+    margin-top: 30px;
+}
