@@ -22,7 +22,6 @@ app.post("/resumir", async (req, res) => {
   try{
 
     const { texto } = req.body;
-
     const prompt = `
     Você é um educador especialista.
 
@@ -32,9 +31,7 @@ app.post("/resumir", async (req, res) => {
     `;
 
     const result = await model.generateContent(prompt);
-
     const response = await result.response;
-
     const resumo = await response.text();
 
     console.log(resumo);
@@ -53,6 +50,40 @@ app.post("/resumir", async (req, res) => {
 
   }
 
+});
+
+app.post("/quiz", async (req, res) => {
+  try{
+    const { texto } = req.body;
+    const prompt = `
+    Você é um professor especialista.
+
+    Com base no conteúdo abaixo, crie 10 questões de multipla escolha.
+
+    Regras:
+
+    - Cada questão deve ter 4 alternativas (A, B, C e D)
+    - Informe a resposta correta ao final de cada questão
+    - Utilize linguagem clara e didática
+    - Formate utilizando Markdown
+
+    Conteúdo:
+
+    ${texto}
+    `;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const quiz = await response.text();
+    res.json({
+      quiz
+    });
+  }catch(error){
+    console.log(error);
+    res.status(500).json({
+      erro: "Erro ao gerar quiz."
+    });
+  }
 });
 
 app.listen(3000, () => {

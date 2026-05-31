@@ -8,6 +8,9 @@ const result = document.getElementById("result");
 const summaryText = document.getElementById("summaryText");
 const loadingText = document.getElementById("loadingText");
 const downloadBtn = document.getElementById("downloadBtn");
+const quizBtn = document.getElementById("quizBtn");
+const quizResult = document.getElementById("quizResult");
+const quizText = document.getElementById("quizText");
 
 uploadArea.addEventListener("click", () => {
   pdfInput.click();
@@ -213,4 +216,38 @@ downloadBtn.addEventListener("click", () => {
 
   //DOWNLOAD
   doc.save("resumo-estud-ai.pdf");
+});
+
+quizBtn.addEventListener("click", async () => {
+  try{
+    quizBtn.disabled = true;
+    quizBtn.textContent = "Gerando Quiz...";
+
+    const response = await fetch(
+      "https://estud-ai-backend.onrender.com/quiz",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        
+        body: JSON.stringify({
+          texto: summaryText.innerText
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    quizResult.style.display = "block";
+    quizText.innerHTML = marked.parse(data.quiz);
+    quizBtn.textContent = "📝 Gerar Quiz";
+    quizBtn.disabled = false;
+
+  }catch(error){
+    console.log(error);
+    alert("Erro ao gerar quiz.");
+    quizBtn.textContent = "📝 Gerar Quiz";
+    quizBtn.disabled = false;
+  }
 });
